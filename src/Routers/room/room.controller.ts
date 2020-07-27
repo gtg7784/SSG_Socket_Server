@@ -71,8 +71,10 @@ export const Join = (req: Request, res: Response) => {
     });
   
     console.log(join);
+
+    res.status(200).send({ roomId: roomId, result: true }).end();
   
-    Send(res, 200, join, join == "성공적으로 방에 입장하셨습니다" ? true : false);
+    // Send(res, 200, join, join == "성공적으로 방에 입장하셨습니다" ? true : false);
   } else {
     const random: string = shortid.generate();
     //이 사이에는 방 인원수 제한등등을 구현

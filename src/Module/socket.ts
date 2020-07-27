@@ -32,6 +32,7 @@ function socket(io) {
     });
 
     socket.on("GameStart", (data) => {
+      socket.join(data);
       var playersSpawn: Array<any> = [];
       //방 정보를 찾음
       console.log("GameStart",data)
