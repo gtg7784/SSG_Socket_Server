@@ -199,13 +199,15 @@ function socket(io) {
 
         console.log(room_id + " / " + _nick + " audo leave room . . .");
 
-        // LeaveRoom(room_id, _nick, _master);
+        LeaveRoom(room_id, _nick, _master);
       });
     });
 
     function LeaveRoom(_id, _nick, _master) {
       roomDB.leave({_id:_id, nickname : _nick, master : _master});
 
+      io.sockets.in(_id).emit("LeavePlayers", {_id : _id, id : _id, nickname : _nick});
+      
       io.sockets.in(_id).emit("getLeaveMessage", _nick);
           socket.leave(_id);
           const room = roomDB
